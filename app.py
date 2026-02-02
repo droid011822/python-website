@@ -3,6 +3,8 @@ import os
 import time
 from multiprocessing import Pool, cpu_count
 from moviepy.editor import VideoFileClip, concatenate_videoclips, vfx
+from moviepy.video.fx.gaussian_blur import gaussian_blur
+
 
 # ---------------- CONFIG ----------------
 st.set_page_config(
@@ -63,7 +65,8 @@ def apply_filter(path):
     if filter_type == "Grayscale":
         processed = clip.fx(vfx.blackwhite)
     else:
-        processed = clip.fx(vfx.gaussian_blur, sigma=3)
+      processed = clip.fx(gaussian_blur, sigma=3)
+
 
 
     out = path.replace("segments", "processed")
