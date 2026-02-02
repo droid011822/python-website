@@ -63,7 +63,8 @@ def apply_filter(path):
     if filter_type == "Grayscale":
         processed = clip.fx(vfx.blackwhite)
     else:
-        processed = clip.fx(vfx.blur, size=5)
+        processed = clip.fx(vfx.gaussian_blur, sigma=3)
+
 
     out = path.replace("segments", "processed")
     processed.write_videofile(out, codec="libx264", audio=False, logger=None)
